@@ -1,0 +1,33 @@
+@import '../variables.scss';
+
+.header {
+
+	display: flex;
+	align-items: center;
+	padding: 15px;
+
+	.logo {
+		margin-right: 50px;
+		font-size: 1.4em;
+		font-weight: bold;
+		color: $green;
+	}
+
+	.nav {
+
+		color: #555;
+
+		a {
+
+			margin-right: 20px;
+			cursor: pointer;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+		}
+
+	}
+
+}

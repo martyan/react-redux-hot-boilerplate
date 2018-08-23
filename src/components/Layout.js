@@ -5,27 +5,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Switch, Route } from "react-router-dom"
 import { setLanguage, detectLanguage } from '../containers/Localization/actions'
-
-const Home = (props, { t }) => (
-  <div>
-    <h2>{t('home')}</h2>
-  </div>
-)
-
-Home.contextTypes = {
-	t: PropTypes.func.isRequired
-}
-
-const About = (props, { t }) => (
-  <div>
-    <h2>{t('about')}</h2>
-  </div>
-)
-
-About.contextTypes = {
-	t: PropTypes.func.isRequired
-}
-
+import Header from './Header'
+import Footer from './Footer'
+import Home from './Home'
+import About from './About'
+import './Layout.scss'
 
 class Layout extends Component {
 	static contextTypes = {
@@ -50,28 +34,19 @@ class Layout extends Component {
 		const { setLanguage } = this.props
 
 		return (
-			<div>
-				<h1>{t('helloWorld')}</h1>
+			<div styleName="layout">
 
-				<div>
-					<a onClick={() => this.props.history.push('/')}>{t('home')}</a>&nbsp;
-					<a onClick={() => this.props.history.push('/about')}>{t('about')}</a>
+				<Header />
+
+				<div styleName="content">
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/about" component={About} />
+						<Route component={Home}/>
+					</Switch>
 				</div>
 
-				<br />
-
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/about" component={About} />
-					<Route component={Home}/>
-				</Switch>
-
-				<br />
-
-				<div>
-					<a onClick={() => setLanguage('en')}>{t('languageEN')}</a>&nbsp;
-					<a onClick={() => setLanguage('cs')}>{t('languageCS')}</a>
-				</div>
+				<Footer setLanguage={setLanguage} />
 
 			</div>
 		)

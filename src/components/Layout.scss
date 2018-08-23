@@ -1,0 +1,13 @@
+@import '../variables.scss';
+
+.layout {
+
+	min-height: 100%;
+	position: relative;
+
+	.content {
+		padding: 15px;
+		padding-bottom: 50px; /* footer height */
+	}
+
+}

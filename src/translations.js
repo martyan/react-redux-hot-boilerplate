@@ -2,16 +2,18 @@ const translations = {
 	"en": {
 		"languageEN": "English",
 		"languageCS": "Čeština",
-		"helloWorld": "Hello world!",
 		"home": "Home",
-		"about": "About"
+		"homeText": "This is homepage. You will see this page by default.",
+		"about": "About us",
+		"aboutText": "You can find some info about us here."
 	},
 	"cs": {
 		"languageEN": "English",
 		"languageCS": "Čeština",
-		"helloWorld": "Ahoj světe!",
 		"home": "Domů",
-		"about": "O nás"
+		"homeText": "Tohle je domovská stránka. Zobrazuje se defaultně.",
+		"about": "O nás",
+		"aboutText": "Tady najdete nějaké informace o nás."
 	}
 }
 
