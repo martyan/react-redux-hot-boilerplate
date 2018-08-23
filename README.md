@@ -6,9 +6,7 @@ react hot reloading
 react router v4  
   
 sass + css modules + normalize.css  
-  
 localization provider  
-  
 sentry-ready error boundary  
   
   
