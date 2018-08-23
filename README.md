@@ -1,14 +1,15 @@
-## Opinionated React + Redux boilerplate for SPA with hot reloading, react-router, css modules, localization provider and simple layout
+Opinionated React + Redux boilerplate for SPA with hot reloading, react-router, css modules, localization provider and simple layout  
 
+  
 react + redux  
 react hot reloading  
 react router v4  
   
-SASS + CSS modules + normalize.css  
+sass + css modules + normalize.css  
   
 localization provider  
   
-Sentry-ready error boundary  
+sentry-ready error boundary  
   
   
   
