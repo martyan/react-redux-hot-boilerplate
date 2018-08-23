@@ -13,7 +13,7 @@ const history = createBrowserHistory()
 
 const render = () => {
   ReactDOM.render(
-    <AppContainer>
+    <AppContainer warnings={false}>
       <Provider store={store}>
 				<LocalizationProvider store={store}>
 					<Router history={history}>

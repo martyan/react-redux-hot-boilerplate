@@ -36,12 +36,13 @@ class Layout extends Component {
 		ln: PropTypes.string.isRequired,
 		setLanguage: PropTypes.func.isRequired,
 		detectLanguage: PropTypes.func.isRequired,
-		history: PropTypes.object.isRequired
+		history: PropTypes.object.isRequired,
+		location: PropTypes.object.isRequired
 	}
 
 	componentDidMount = () => {
-		const { detectLanguage } = this.props
-		detectLanguage()
+		const { detectLanguage, location } = this.props
+		detectLanguage(location.search)
 	}
 
 	render = () => {

@@ -20,11 +20,13 @@ export const setLanguage = (ln) => (dispatch) => {
   saveLanguageToLS(ln)
 }
 
-export const detectLanguage = () => (dispatch) => {
+export const detectLanguage = (query) => (dispatch) => {
   const storageLn = loadLanguageFromLS()
   const detectedLn = detectNavigatorLanguage()
-  
-  const ln = storageLn || detectedLn
+  const isQueryLn = query.match(/ln=[a-zA-Z]{2}/)
+  const queryLn = isQueryLn ? query.substr(isQueryLn.index + 3, 2) : null
+
+  const ln = queryLn || storageLn || detectedLn
   dispatch(setLanguage(ln))
 }
 
