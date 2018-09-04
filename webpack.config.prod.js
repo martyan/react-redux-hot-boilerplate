@@ -57,7 +57,8 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NamedModulesPlugin(),

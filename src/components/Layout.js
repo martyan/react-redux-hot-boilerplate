@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Switch, Route } from "react-router-dom"
 import { setLanguage, detectLanguage } from '../containers/Localization/actions'
+import { getTodo } from '../containers/App/actions'
 import Header from './Header'
 import Footer from './Footer'
 import Home from './Home'
@@ -21,16 +22,17 @@ class Layout extends Component {
 		setLanguage: PropTypes.func.isRequired,
 		detectLanguage: PropTypes.func.isRequired,
 		history: PropTypes.object.isRequired,
-		location: PropTypes.object.isRequired
+		location: PropTypes.object.isRequired,
+		getTodo: PropTypes.func.isRequired
 	}
 
 	componentDidMount = () => {
-		const { detectLanguage, location } = this.props
+		const { detectLanguage, location, getTodo } = this.props
 		detectLanguage(location.search)
+		getTodo(1)
 	}
 
 	render = () => {
-		const { t } = this.context
 		const { setLanguage } = this.props
 
 		return (
@@ -60,7 +62,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
     setLanguage,
-    detectLanguage
+    detectLanguage,
+    getTodo
   }, dispatch)
 )
 

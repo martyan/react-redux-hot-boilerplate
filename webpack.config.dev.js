@@ -62,7 +62,8 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-        NODE_ENV: 'development'
+        NODE_ENV: 'development',
+        ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/assets/index.html'),
