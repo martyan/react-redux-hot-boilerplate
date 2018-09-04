@@ -29,7 +29,7 @@ class Layout extends Component {
 	componentDidMount = () => {
 		const { detectLanguage, location, getTodo } = this.props
 		detectLanguage(location.search)
-		getTodo(1)
+		getTodo(1).catch(console.error)
 	}
 
 	render = () => {
