@@ -2,23 +2,23 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader' /* react-hot-loader v3 */
-import { Router } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
 import configureStore from './store'
 import App from './containers/App'
 import LocalizationProvider from './containers/Localization/LocalizationProvider'
 
-const store = configureStore()
 const history = createBrowserHistory()
+const store = configureStore(history)
 
 const render = () => {
   ReactDOM.render(
     <AppContainer warnings={false}>
       <Provider store={store}>
 				<LocalizationProvider store={store}>
-					<Router history={history}>
+					<ConnectedRouter history={history}>
 						<App />
-					</Router>
+					</ConnectedRouter>
 				</LocalizationProvider>
       </Provider>
     </AppContainer>,
