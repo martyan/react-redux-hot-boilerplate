@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import { routerMiddleware } from "react-router-redux";
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import logger from '../middleware/logger'
@@ -7,8 +7,9 @@ import api from '../middleware/api'
 
 export default (history) => {
 	const router = routerMiddleware(history)
+	const reducer = connectRouter(history)(rootReducer)
 	return createStore(
-    rootReducer,
+    reducer,
     applyMiddleware(router, thunk, api, logger),
 	)
 }
