@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --config webpack.config.dev.js",
-    "prod": "node ./node_modules/webpack/bin/webpack.js -p --progress --config ./webpack.config.prod.js"
+    "prod": "node ./node_modules/webpack/bin/webpack.js -p --progress --config ./webpack.config.prod.js",
+    "start": "node ./server/index.js --color=always"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,9 @@
   "homepage": "https://github.com/martyan/react-redux-hot-boilerplate#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "connected-react-router": "^4.4.1",
+    "express": "^4.16.3",
     "history": "^4.7.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
