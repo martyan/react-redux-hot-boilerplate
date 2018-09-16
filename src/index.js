@@ -15,23 +15,13 @@ if(process.env.NODE_ENV === 'production') {
 //   Raven.config('<YOUR-SENTRY-ID>').install()
 }
 
-const render = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-			<LocalizationProvider store={store}>
-				<ConnectedRouter history={history}>
-					<App />
-				</ConnectedRouter>
-			</LocalizationProvider>
-    </Provider>,
-    document.getElementById('app')
-  )
-}
-
-render()
-
-if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    render()
-  })
-}
+ReactDOM.render(
+  <Provider store={store}>
+		<LocalizationProvider store={store}>
+			<ConnectedRouter history={history}>
+				<App />
+			</ConnectedRouter>
+		</LocalizationProvider>
+  </Provider>,
+  document.getElementById('app')
+)
