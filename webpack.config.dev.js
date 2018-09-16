@@ -7,7 +7,7 @@ module.exports = {
   context,
   mode: 'development',
   devtool: 'inline-sourcemap',
-  entry: [/*'@babel/polyfill', */ 'react-hot-loader/patch', './index'],
+  entry: [/*'@babel/polyfill', */ './index'],
   devServer: {
     historyApiFallback: true,
     hot: true
