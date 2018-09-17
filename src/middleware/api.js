@@ -5,10 +5,10 @@ export const CALL_API = 'Call API'
 
 const callApi = ({ endpoint, method, data }) => {
   const headers = {
-    'X-Origin': window ? window.location.href : ''
+    // 'X-Origin': window ? window.location.href : ''
   }
 
-  const ln = window ? window.localStorage.getItem('ln') : null
+  const ln = null //window ? window.localStorage.getItem('ln') : null
   if(ln) headers['Accept-Language'] = ln
   
   const config = {

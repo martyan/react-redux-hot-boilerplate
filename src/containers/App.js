@@ -1,13 +1,8 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
-import ErrorHandler from './ErrorHandler'
-import Layout from '../components/Layout'
-import '../global.scss'
+// import './App.scss'
 
 const App = () => (
-	<ErrorHandler>
-		<Layout />
-	</ErrorHandler>
+	<div>polibte mi prdele</div>
 )
 
-export default hot(module)(App)
+export default App
