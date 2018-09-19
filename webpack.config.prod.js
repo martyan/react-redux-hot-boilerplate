@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 var path = require('path');
@@ -53,7 +54,13 @@ module.exports = [
         }, {
           test: /\.(scss|css)$/,
           loaders: [
-            'css-loader/locals',
+            'isomorphic-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1
+              }
+            },
             'postcss-loader',
             'sass-loader'
           ]
@@ -127,9 +134,17 @@ module.exports = [
           }
         }, {
           test: /\.(scss|css)$/,
-          loaders: [
-            'style-loader', 
-            'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]',
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[local]___[hash:base64:5]',
+                sourceMap: false,
+              }
+            },
             'postcss-loader',
             'sass-loader'
           ]
@@ -143,6 +158,7 @@ module.exports = [
       ]
     },
     plugins: [
+      new MiniCssExtractPlugin(),
       new webpack.EnvironmentPlugin({
           NODE_ENV: 'production',
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
