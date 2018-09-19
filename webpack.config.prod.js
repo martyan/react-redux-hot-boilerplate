@@ -15,7 +15,7 @@ module.exports = [
   {
     mode: 'production',
     // devtool: false,
-    entry: [SRC_PATH + '/server/index.js'],
+    entry: [`${SRC_PATH}/server/index.js`],
     output: {
       path: PUBLIC_PATH,
       filename: 'server.js',
@@ -117,7 +117,7 @@ module.exports = [
   {
     mode: 'production',
     // devtool: false,
-    entry: ['@babel/polyfill', SRC_PATH + '/client/index.js'],
+    entry: ['@babel/polyfill', `${SRC_PATH}/client/index.js`],
     output: {
       path: PUBLIC_PATH,
       filename: 'client.js',

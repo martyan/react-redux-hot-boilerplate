@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom';
 // import Raven from 'raven-js'
 // import { Provider } from 'react-redux'
 // import { ConnectedRouter } from 'connected-react-router'
@@ -15,4 +16,8 @@ if(process.env.NODE_ENV === 'production') {
 //   Raven.config('<YOUR-SENTRY-ID>').install()
 }
 
-ReactDOM.hydrate(<App />, document.getElementById('app'))
+ReactDOM.hydrate((
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
+), document.getElementById('app'));
