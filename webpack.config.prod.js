@@ -1,11 +1,11 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-var nodeExternals = require('webpack-node-externals');
-var path = require('path');
-var context = path.resolve(__dirname, 'src');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+const path = require('path');
+const context = path.resolve(__dirname, 'src');
 
 module.exports = [
   {
