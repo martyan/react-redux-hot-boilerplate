@@ -3,21 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const StatsPlugin = require('stats-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
-const context = path.resolve(__dirname, 'src');
+
+const SRC_PATH = path.resolve(__dirname, 'src');
+const PUBLIC_PATH = path.resolve(__dirname, 'public');
 
 module.exports = [
   {
-    context,
     mode: 'production',
     // devtool: false,
-    entry: ['./server/index.js'],
+    entry: [SRC_PATH + '/server/index.js'],
     output: {
-      path: path.resolve(__dirname, 'public'),
+      path: PUBLIC_PATH,
       filename: 'server.js',
       libraryTarget: 'commonjs2',
-      publicPath: '/'
+      publicPath: PUBLIC_PATH
     },
     target: 'node',
     node: {
@@ -41,7 +44,6 @@ module.exports = [
               '@babel/plugin-proposal-class-properties', 
               '@babel/plugin-proposal-object-rest-spread',
               ['react-css-modules', {
-                context,
                 exclude: 'node_modules',
                 generateScopedName: '[local]___[hash:base64:5]',
                 filetypes: {
@@ -82,6 +84,15 @@ module.exports = [
           NODE_ENV: 'production',
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
       }),
+      new OptimizeCSSAssetsPlugin({}),
+      new StatsPlugin('stats.json', {
+        chunkModules: true,
+        modules: true,
+        chunks: true,
+        exclude: [/node_modules[\\\/]react/],
+      }),
+      new CleanWebpackPlugin(PUBLIC_PATH)
+
       // new webpack.optimize.OccurrenceOrderPlugin(),
       // new webpack.NamedModulesPlugin(),
     ],
@@ -104,14 +115,13 @@ module.exports = [
     // }
   },
   {
-    context,
     mode: 'production',
     // devtool: false,
-    entry: ['@babel/polyfill', './client/index.js'],
+    entry: ['@babel/polyfill', SRC_PATH + '/client/index.js'],
     output: {
-      path: path.resolve(__dirname, 'public'),
-      filename: 'app.js',
-      publicPath: '/'
+      path: PUBLIC_PATH,
+      filename: 'client.js',
+      publicPath: PUBLIC_PATH
     },
     module: {
       rules: [
@@ -125,7 +135,6 @@ module.exports = [
               '@babel/plugin-proposal-class-properties', 
               '@babel/plugin-proposal-object-rest-spread',
               ['react-css-modules', {
-                context,
                 exclude: 'node_modules',
                 generateScopedName: '[local]___[hash:base64:5]',
                 filetypes: {
@@ -163,20 +172,15 @@ module.exports = [
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
+          filename: 'styles.css',
+          allChunks: true
       }),
       new webpack.EnvironmentPlugin({
           NODE_ENV: 'production',
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
       }),
       new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.NamedModulesPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/assets/index.html'),
-        filename: 'index.html',
-        inject: 'body'
-      })
+      new webpack.NamedModulesPlugin()
     ],
     optimization: {
       minimizer: [
