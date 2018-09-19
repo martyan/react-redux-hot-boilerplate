@@ -7,7 +7,7 @@ import compression from 'compression'
 import fs from 'fs'
 
 import { renderToString } from 'react-dom/server'
-import App from '../containers/App';
+import App from '../client/containers/App';
 
 const log = console.log
 const app = express();

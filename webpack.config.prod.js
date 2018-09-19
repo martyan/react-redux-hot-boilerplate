@@ -107,7 +107,7 @@ module.exports = [
     context,
     mode: 'production',
     // devtool: false,
-    entry: ['@babel/polyfill', './index'],
+    entry: ['@babel/polyfill', './client/index.js'],
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: 'app.js',
