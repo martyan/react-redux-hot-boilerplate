@@ -59,7 +59,10 @@ module.exports = [
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[local]___[hash:base64:5]',
+                sourceMap: false,
               }
             },
             'postcss-loader',
@@ -186,21 +189,6 @@ module.exports = [
       ]
     }
     // optimization: {
-    //   minimizer: [
-    //     new UglifyJsPlugin({
-    //       uglifyOptions: {
-    //         mangle: false,
-    //         sourcemap: false, 
-    //         compress: {
-    //           warnings: false,
-    //         },
-    //         output: {
-    //           comments: false,
-    //           beautify: false
-    //         }
-    //       }
-    //     }),
-    //   ],
     //   splitChunks: {
     //     cacheGroups: {
     //       vendor: {
