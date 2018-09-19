@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 var path = require('path');
 var context = path.resolve(__dirname, 'src');
@@ -158,7 +159,10 @@ module.exports = [
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin(),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css'
+      }),
       new webpack.EnvironmentPlugin({
           NODE_ENV: 'production',
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
@@ -171,6 +175,16 @@ module.exports = [
         inject: 'body'
       })
     ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ]
+    }
     // optimization: {
     //   minimizer: [
     //     new UglifyJsPlugin({
