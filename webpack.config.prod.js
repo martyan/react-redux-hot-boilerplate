@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -82,6 +81,7 @@ module.exports = [
     plugins: [
       new webpack.EnvironmentPlugin({
           NODE_ENV: 'production',
+          BROWSER: false,
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
       }),
       new OptimizeCSSAssetsPlugin({}),
@@ -177,6 +177,7 @@ module.exports = [
       }),
       new webpack.EnvironmentPlugin({
           NODE_ENV: 'production',
+          BROWSER: true,
           ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
       }),
       new webpack.optimize.OccurrenceOrderPlugin(),

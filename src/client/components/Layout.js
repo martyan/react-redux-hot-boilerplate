@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route } from 'react-router-dom'
+import Helmet from 'react-helmet'
 import { setLanguage, detectLanguage } from '../containers/Localization/actions'
 import { getTodo } from '../containers/App/actions'
 import Header from './Header'
@@ -37,6 +38,17 @@ class Layout extends Component {
 
 		return (
 			<div styleName="layout">
+			
+        <Helmet
+          // htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
+          // titleTemplate="%s | React App"
+          // titleAttributes={{itemprop: "name", lang: "en"}}
+          // meta={[
+          //     {name: "description", content: "Server side rendering example"},
+          //     {name: "viewport", content: "width=device-width, initial-scale=1"},
+          // ]}
+          // link={[{rel: "stylesheet", href: "/dist/styles.css"}]}
+        />
 
 				<Header />
 
