@@ -1,4 +1,4 @@
-import { CALL_API } from '../../middleware/api'
+import { CALL_API } from '../../../common/middleware/api'
 import { 
 	GET_TODO_REQUEST,
   GET_TODO_SUCCESS,
