@@ -8,7 +8,7 @@ import LocalizationProvider from './containers/Localization/LocalizationProvider
 import configureStore from '../common/store'
 import history from '../common/history'
 
-const store = configureStore(history, window.REDUX_DATA)
+const store = configureStore(history, window.__INITIAL_STATE__)
 
 if(process.env.NODE_ENV === 'production') {
 //   Raven.config('<YOUR-SENTRY-ID>').install()
