@@ -4,7 +4,7 @@
   "description": "React redux boilerplate with hot reloading, react-router, css modules and simple localization provider",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --content-base src --inline --config webpack.config.dev.js",
+    "dev": "node ./server/development.js",
     "prod": "node ./node_modules/webpack/bin/webpack.js -p --progress --config ./webpack.config.prod.js && node ./server/production.js",
     "start": "node ./server/production.js --color=always"
   },
@@ -79,6 +79,8 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.3.0",
     "webpack-dev-server": "^3.1.8",
+    "webpack-hot-middleware": "^2.24.2",
+    "webpack-hot-server-middleware": "^0.5.0",
     "webpack-node-externals": "^1.7.2"
   }
 }

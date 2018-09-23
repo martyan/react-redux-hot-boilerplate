@@ -12,6 +12,7 @@ const PUBLIC_PATH = path.resolve(__dirname, 'public');
 
 module.exports = [
   {
+    name: 'server',
     mode: 'production',
     // devtool: false,
     entry: [`${SRC_PATH}/server/index.js`],
@@ -92,10 +93,9 @@ module.exports = [
         exclude: [/node_modules[\\\/]react/],
       }),
       new CleanWebpackPlugin(PUBLIC_PATH)
-
       // new webpack.optimize.OccurrenceOrderPlugin(),
       // new webpack.NamedModulesPlugin(),
-    ],
+    ]
     // optimization: {
     //   minimizer: [
     //     new UglifyJsPlugin({
@@ -115,6 +115,7 @@ module.exports = [
     // }
   },
   {
+    name: 'client',
     mode: 'production',
     // devtool: false,
     entry: ['@babel/polyfill', `${SRC_PATH}/client/index.js`],
