@@ -4,7 +4,11 @@ https://github.com/madole/webpack-dev-middleware-boilerplate
 https://github.com/glenjamin/ultimate-hot-reloading-example
 
 common structure	-> presunout actions do common
-SSR - data requirements
+  
+SSR - data requirements 
+https://medium.freecodecamp.org/demystifying-reacts-server-side-render-de335d408fe4
+https://codeburst.io/react-isomorphic-universal-app-w-nodejs-redux-react-router-v4-be80aa57dcaf
+  
 isomorphic style loader - css modules server
 mini-css-extract-plugin dev HMR
   
