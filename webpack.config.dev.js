@@ -1,11 +1,14 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
-var context = path.resolve(__dirname, 'src');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
+const SRC_PATH = path.resolve(__dirname, 'src');
 
 module.exports = {
-  context,
+  name: 'client',
   mode: 'development',
+  target: 'web',
+  context: SRC_PATH,
   devtool: 'inline-sourcemap',
   entry: [/*'@babel/polyfill', */ './index'],
   devServer: {
@@ -25,7 +28,7 @@ module.exports = {
             '@babel/plugin-proposal-class-properties', 
             '@babel/plugin-proposal-object-rest-spread',
             ['react-css-modules', {
-              context,
+              context: SRC_PATH,
               exclude: 'node_modules',
               generateScopedName: '[local]___[hash:base64:5]',
               filetypes: {
@@ -55,7 +58,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'src'),
+    path: SRC_PATH,
     filename: '[name].[hash:5].js',
     chunkFilename: '[name].[hash:5].js',
     publicPath: '/'

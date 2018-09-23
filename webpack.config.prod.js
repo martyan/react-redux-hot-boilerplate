@@ -1,12 +1,17 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var path = require('path');
-var context = path.resolve(__dirname, 'src');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
+
+const SRC_PATH = path.resolve(__dirname, 'src');
+const PUBLIC_PATH = path.resolve(__dirname, 'public');
 
 module.exports = {
-  context,
+  name: 'client',
   mode: 'production',
+  target: 'web',
+  context: SRC_PATH,
   devtool: false,
   entry: ['@babel/polyfill', './index'],
   module: {
@@ -21,7 +26,7 @@ module.exports = {
             '@babel/plugin-proposal-class-properties', 
             '@babel/plugin-proposal-object-rest-spread',
             ['react-css-modules', {
-              context,
+              context: SRC_PATH,
               exclude: 'node_modules',
               generateScopedName: '[local]___[hash:base64:5]',
               filetypes: {
@@ -50,7 +55,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: PUBLIC_PATH,
     filename: '[name].[hash:5].js',
     chunkFilename: '[name].[hash:5].js',
     publicPath: '/'
@@ -60,6 +65,7 @@ module.exports = {
         NODE_ENV: 'production',
         ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
     }),
+    new CleanWebpackPlugin(PUBLIC_PATH),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
