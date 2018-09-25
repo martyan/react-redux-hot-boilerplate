@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 // import Raven from 'raven-js'
 import { Provider } from 'react-redux'
+import { AppContainer } from 'react-hot-loader' /* react-hot-loader v3 */
 import { ConnectedRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import configureStore from './store'
@@ -17,13 +18,15 @@ if(process.env.NODE_ENV === 'production') {
 
 const render = () => {
   ReactDOM.render(
-    <Provider store={store}>
-			<LocalizationProvider store={store}>
-				<ConnectedRouter history={history}>
-					<App />
-				</ConnectedRouter>
-			</LocalizationProvider>
-    </Provider>,
+    <AppContainer warnings={false}>
+      <Provider store={store}>
+				<LocalizationProvider store={store}>
+					<ConnectedRouter history={history}>
+						<App />
+					</ConnectedRouter>
+				</LocalizationProvider>
+      </Provider>
+    </AppContainer>,
     document.getElementById('app')
   )
 }
