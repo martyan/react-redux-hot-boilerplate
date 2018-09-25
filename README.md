@@ -2,6 +2,7 @@ SSR
 code splitting
 jwt
 
+mini css extract plugin
 
 
 Minimalistic React + Redux boilerplate for SPA with hot reloading, react-router, css modules, localization provider and simple layout  
