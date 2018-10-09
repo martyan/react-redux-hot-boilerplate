@@ -10,11 +10,7 @@ module.exports = {
   target: 'web',
   context: SRC_PATH,
   devtool: 'inline-sourcemap',
-  entry: [/*'@babel/polyfill', */ 'react-hot-loader/patch', './index'],
-  devServer: {
-    historyApiFallback: true,
-    hot: true
-  },
+  entry: ['webpack-hot-middleware/client', 'react-hot-loader/patch', './index'],
   module: {
     rules: [
       {
@@ -74,6 +70,7 @@ module.exports = {
       inject: 'body'
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };
