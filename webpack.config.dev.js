@@ -104,7 +104,7 @@ module.exports = [
         mode: 'development',
         target: 'web',
         devtool: 'inline-sourcemap',
-        entry: [/*'@babel/polyfill', */`${SRC_PATH}/client/index.js`],
+        entry: ['webpack-hot-middleware/client', `${SRC_PATH}/client/index.js`],
         output: {
             path: PUBLIC_PATH,
             filename: 'client.js',
