@@ -3,8 +3,8 @@ import localization from '../client/containers/Localization/reducer'
 import app from '../client/containers/App/reducer'
 
 const rootReducer = combineReducers({
-  localization,
-  app
+    localization,
+    app
 })
 
 export default rootReducer

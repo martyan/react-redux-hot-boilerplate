@@ -2,97 +2,97 @@
 
 .error-handler {
 
-  padding: 20vh 15px 15px;
+    padding: 20vh 15px 15px;
 
-  .oops {
+    .oops {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    color: #545a5c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+        color: #545a5c;
 
-    @media (min-width: $tablet) {
-      margin-bottom: 80px;
-    }
+        @media (min-width: $tablet) {
+            margin-bottom: 80px;
+        }
 
-    i {
+        i {
 
-      display: block;
-      margin-right: 30px;
-      font-size: 4em;
+            display: block;
+            margin-right: 30px;
+            font-size: 4em;
 
-      @media (min-width: $tablet) {
-        margin-right: 50px;
-        font-size: 8em;
-      }
+            @media (min-width: $tablet) {
+                margin-right: 50px;
+                font-size: 8em;
+            }
 
-    }
+        }
 
-    h1 {
+        h1 {
 
-      font-size: 2em;
-      margin: 0;
+            font-size: 2em;
+            margin: 0;
 
-      @media (min-width: $tablet) {
-        font-size: 3em;
-      }
+            @media (min-width: $tablet) {
+                font-size: 3em;
+            }
 
-    }
+        }
 
-    h2 {
+        h2 {
 
-      font-size: 1.1em;
-      margin: 0;
+            font-size: 1.1em;
+            margin: 0;
 
-      @media (min-width: $tablet) {
-        font-size: 1.5em;
-      }
+            @media (min-width: $tablet) {
+                font-size: 1.5em;
+            }
 
-    }
-    
-  }
-
-  .cta {
-
-    text-align: center;
-
-    p {
-
-      margin: 0 0 20px;
-      font-size: 1em;
-      color: #545a5c;
-
-      @media (min-width: $tablet) {
-        font-size: 1.1em;
-      }
+        }
 
     }
 
-    .btn {
+    .cta {
 
-      background: $orange;
-      color: white;
-      border: none;
-      padding: 11px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      transition: .2s ease;
+        text-align: center;
 
-      &:hover {
-        background: darken($orange, 15%);
-        color: white;
-      }
+        p {
 
-      &:active {
-        background: #333;
-      }
+            margin: 0 0 20px;
+            font-size: 1em;
+            color: #545a5c;
+
+            @media (min-width: $tablet) {
+                font-size: 1.1em;
+            }
+
+        }
+
+        .btn {
+
+            background: $orange;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            transition: .2s ease;
+
+            &:hover {
+                background: darken($orange, 15%);
+                color: white;
+            }
+
+            &:active {
+                background: #333;
+            }
+
+        }
 
     }
-    
-  }
 
 }

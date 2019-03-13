@@ -1,5 +1,5 @@
 export default ({ markup, helmet, reduxState }) => {
-	return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 			<html ${helmet.htmlAttributes.toString()}>
 				<head>
 					${helmet.title.toString()}

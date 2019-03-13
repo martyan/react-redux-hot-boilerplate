@@ -15,12 +15,12 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 ReactDOM.hydrate(
-  <Provider store={store}>
-    <LocalizationProvider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </LocalizationProvider>
-  </Provider>,
-  document.getElementById('app')
+    <Provider store={store}>
+        <LocalizationProvider store={store}>
+            <ConnectedRouter history={history}>
+                <App/>
+            </ConnectedRouter>
+        </LocalizationProvider>
+    </Provider>,
+    document.getElementById('app')
 )
