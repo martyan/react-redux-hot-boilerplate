@@ -92,7 +92,7 @@ module.exports = [
                 chunks: true,
                 exclude: [/node_modules[\\\/]react/],
             }),
-            new CleanWebpackPlugin(PUBLIC_PATH)
+            new CleanWebpackPlugin()
             // new webpack.optimize.OccurrenceOrderPlugin(),
             // new webpack.NamedModulesPlugin(),
         ]
