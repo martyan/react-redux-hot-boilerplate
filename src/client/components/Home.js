@@ -29,8 +29,6 @@ class Home extends Component {
         const { t } = this.context
         const { todo } = this.props
 
-        console.log(todo)
-
         return (
             <div>
                 <Helmet>
