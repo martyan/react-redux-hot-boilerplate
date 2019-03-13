@@ -7,10 +7,9 @@ import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { setLanguage, detectLanguage } from '../containers/Localization/actions'
 import { getTodo } from '../containers/App/actions'
+import routes from '../../common/routes'
 import Header from './Header'
 import Footer from './Footer'
-import Home from './Home'
-import About from './About'
 import './Layout.scss'
 
 class Layout extends Component {
@@ -54,9 +53,7 @@ class Layout extends Component {
 
                 <div styleName="content">
                     <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/about" component={About}/>
-                        <Route component={Home}/>
+                        {routes.map(route => <Route key={ route.path } { ...route } />)}
                     </Switch>
                 </div>
 
