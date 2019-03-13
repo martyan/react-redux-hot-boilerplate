@@ -53,7 +53,7 @@ class Layout extends Component {
 
                 <div styleName="content">
                     <Switch>
-                        {routes.map(route => <Route key={ route.path } { ...route } />)}
+                        {routes.map(route => <Route key={route.path} {...route} />)}
                     </Switch>
                 </div>
 
