@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { setLanguage, detectLanguage } from '../containers/Localization/actions'
-import { getTodo } from '../containers/App/actions'
 import routes from '../../common/routes'
 import Header from './Header'
 import Footer from './Footer'
@@ -22,14 +21,12 @@ class Layout extends Component {
         setLanguage: PropTypes.func.isRequired,
         detectLanguage: PropTypes.func.isRequired,
         history: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        getTodo: PropTypes.func.isRequired
+        location: PropTypes.object.isRequired
     }
 
     componentDidMount = () => {
-        const { detectLanguage, location, getTodo } = this.props
+        const { detectLanguage, location } = this.props
         detectLanguage(location.search)
-        getTodo(1).catch(console.error)
     }
 
     render = () => {
@@ -71,8 +68,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
         setLanguage,
-        detectLanguage,
-        getTodo
+        detectLanguage
     }, dispatch)
 )
 
