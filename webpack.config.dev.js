@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactLoadableWebpack = require('react-loadable/webpack');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
@@ -13,10 +14,10 @@ module.exports = [
         target: 'node',
         entry: [`${SRC_PATH}/server/index.js`],
         output: {
-            path: PUBLIC_PATH,
             filename: 'server.js',
+            path: PUBLIC_PATH,
+            publicPath: '/public/',
             libraryTarget: 'commonjs2',
-            publicPath: PUBLIC_PATH
         },
         node: {
             console: false,
@@ -36,8 +37,10 @@ module.exports = [
                     query: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
+                            '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-proposal-class-properties',
                             '@babel/plugin-proposal-object-rest-spread',
+                            'react-loadable/babel',
                             ['react-css-modules', {
                                 exclude: 'node_modules',
                                 generateScopedName: '[local]___[hash:base64:5]',
@@ -79,25 +82,12 @@ module.exports = [
                 NODE_ENV: 'development',
                 BROWSER: false,
                 ENDPOINT_BASEURI: 'https://jsonplaceholder.typicode.com'
+            }),
+            new ExtractCssChunks,
+            new webpack.optimize.LimitChunkCountPlugin({
+                maxChunks: 1
             })
         ]
-        // optimization: {
-        //   minimizer: [
-        //     new UglifyJsPlugin({
-        //       uglifyOptions: {
-        //         mangle: false,
-        //         sourcemap: false,
-        //         compress: {
-        //           warnings: false,
-        //         },
-        //         output: {
-        //           comments: false,
-        //           beautify: false
-        //         }
-        //       }
-        //     }),
-        //   ]
-        // }
     },
     {
         name: 'client',
@@ -106,9 +96,10 @@ module.exports = [
         devtool: 'inline-sourcemap',
         entry: ['webpack-hot-middleware/client', `${SRC_PATH}/client/index.js`],
         output: {
+            filename: '[name].js',
+            chunkFilename: '[name].js',
             path: PUBLIC_PATH,
-            filename: 'client.js',
-            publicPath: PUBLIC_PATH
+            publicPath: '/public/'
         },
         module: {
             rules: [
@@ -120,8 +111,10 @@ module.exports = [
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
                             'react-hot-loader/babel',
+                            '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-proposal-class-properties',
                             '@babel/plugin-proposal-object-rest-spread',
+                            'react-loadable/babel',
                             ['react-css-modules', {
                                 exclude: 'node_modules',
                                 generateScopedName: '[local]___[hash:base64:5]',
@@ -136,7 +129,7 @@ module.exports = [
                 }, {
                     test: /\.(scss|css)$/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -159,10 +152,10 @@ module.exports = [
             ]
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: 'styles.css',
-                allChunks: true
+            new ReactLoadableWebpack.ReactLoadablePlugin({
+                filename: './public/react-loadable.json',
             }),
+            new ExtractCssChunks,
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
                 BROWSER: true,
@@ -170,18 +163,17 @@ module.exports = [
             }),
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin()
-        ]
-        // optimization: {
-        //   splitChunks: {
-        //     cacheGroups: {
-        //       vendor: {
-        //         test: /node_modules/,
-        //         chunks: 'initial',
-        //         name: 'vendor',
-        //         enforce: true
-        //       }
-        //     }
-        //   }
-        // }
+        ],
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendor',
+                        chunks: 'all'
+                    }
+                }
+            }
+        }
     }
 ]
