@@ -10,8 +10,8 @@ export default ({ markup, helmet, reduxState }) => {
 				<body ${helmet.bodyAttributes.toString()}>
 					<div id="app">${markup}</div>
 					<script>window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}</script>
-					<script src="/public/client.js" async></script>
-					<link href="/public/styles.css" rel="stylesheet" />
+					<script src="/public/main.js" async></script>
+					<link href="/public/main.css" rel="stylesheet" />
 				</body>
 			</html>`;
 };
