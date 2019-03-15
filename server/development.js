@@ -7,6 +7,7 @@ const compiler = webpack(config);
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const Loadable = require('react-loadable')
 
 app.use(webpackDevMiddleware(compiler, {
     publicPath: '/public/',
@@ -17,10 +18,12 @@ app.use(webpackHotServerMiddleware(compiler));
 
 const PORT = process.env.PORT || 6150;
 
-app.listen(PORT, error => {
-    if(error) {
-        return console.error(error);
-    } else {
+app.use(express.static('public'))
+
+Loadable.preloadAll().then(() => {
+    app.listen(PORT, () => {
         console.log(`Development Express server running at http://localhost:${PORT}`);
-    }
+    });
+}).catch(err => {
+    console.log(err);
 });

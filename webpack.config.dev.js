@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
@@ -78,6 +78,7 @@ module.exports = [
             ]
         },
         plugins: [
+            new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
             new ExtractCssChunks(),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',

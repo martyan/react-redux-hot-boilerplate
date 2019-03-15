@@ -1,14 +1,29 @@
-import Home from '../client/components/Home'
-import About from '../client/components/About'
+import React from 'react'
+import Loadable from 'react-loadable'
+
+
+const loading = () => <div>Loading...</div>
+
+const Home = Loadable({
+    loader: () => import('../client/components/Home'),
+    loading,
+    delay: 300
+})
+
+const About = Loadable({
+    loader: () => import('../client/components/Home'),
+    loading,
+    delay: 300
+})
 
 export default [
     {
-        path: "/",
+        path: '/',
         component: Home,
         exact: true
     },
     {
-        path: "/about",
+        path: '/about',
         component: About,
         exact: true
     }
