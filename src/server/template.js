@@ -12,6 +12,7 @@ export default ({ markup, helmet, reduxState }) => {
 					<script>window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}</script>
 					<script src="/public/main.js" async></script>
 					<link href="/public/main.css" rel="stylesheet" />
+					<script>window.main();</script>
 				</body>
 			</html>`;
 };

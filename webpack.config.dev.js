@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
@@ -13,10 +14,10 @@ module.exports = [
         target: 'node',
         entry: [`${SRC_PATH}/server/index.js`],
         output: {
-            path: PUBLIC_PATH,
             filename: 'server.js',
-            libraryTarget: 'commonjs2',
-            publicPath: PUBLIC_PATH
+            path: PUBLIC_PATH,
+            publicPath: PUBLIC_PATH,
+            libraryTarget: 'commonjs2'
         },
         node: {
             console: false,
@@ -36,8 +37,10 @@ module.exports = [
                     query: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
+                            '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-proposal-class-properties',
                             '@babel/plugin-proposal-object-rest-spread',
+                            'react-loadable/babel',
                             ['react-css-modules', {
                                 exclude: 'node_modules',
                                 generateScopedName: '[local]___[hash:base64:5]',
@@ -51,8 +54,8 @@ module.exports = [
                     }
                 }, {
                     test: /\.(scss|css)$/,
-                    loaders: [
-                        'isomorphic-style-loader',
+                    use: [
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -75,6 +78,7 @@ module.exports = [
             ]
         },
         plugins: [
+            new ExtractCssChunks(),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
                 BROWSER: false,
@@ -106,8 +110,9 @@ module.exports = [
         devtool: 'inline-sourcemap',
         entry: ['webpack-hot-middleware/client', `${SRC_PATH}/client/index.js`],
         output: {
+            filename: '[name].js',
+            chunkFilename: '[name].js',
             path: PUBLIC_PATH,
-            filename: 'client.js',
             publicPath: PUBLIC_PATH
         },
         module: {
@@ -120,8 +125,10 @@ module.exports = [
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
                             'react-hot-loader/babel',
+                            '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-proposal-class-properties',
                             '@babel/plugin-proposal-object-rest-spread',
+                            'react-loadable/babel',
                             ['react-css-modules', {
                                 exclude: 'node_modules',
                                 generateScopedName: '[local]___[hash:base64:5]',
@@ -136,7 +143,7 @@ module.exports = [
                 }, {
                     test: /\.(scss|css)$/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -159,10 +166,8 @@ module.exports = [
             ]
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: 'styles.css',
-                allChunks: true
-            }),
+            new ReactLoadablePlugin({filename: './public/react-loadable.json'}),
+            new ExtractCssChunks(),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
                 BROWSER: true,
